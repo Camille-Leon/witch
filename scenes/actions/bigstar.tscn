@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://ctbr76ue2bluw"]
+
+[ext_resource type="Script" uid="uid://b1h5fkyo08de5" path="res://scenes/actions/star.gd" id="1_46cne"]
+[ext_resource type="Texture2D" uid="uid://bx8ijj7fhrpdi" path="res://assets/textures/actions/star/sparkle.png" id="1_os7x8"]
+[ext_resource type="Material" uid="uid://cq15legt2v4in" path="res://assets/shaders/outline.tres" id="2_46cne"]
+[ext_resource type="Texture2D" uid="uid://c227g54q7dx62" path="res://assets/textures/actions/star/big_star_texture.png" id="2_mohf7"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_46cne"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_46cne"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.61278194, 0.75510204), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="BigStar" type="Node2D"]
+script = ExtResource("1_46cne")
+
+[node name="SmallParticles" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_46cne")
+amount = 1
+texture = ExtResource("1_os7x8")
+lifetime = 0.5
+explosiveness = 0.5
+emission_shape = 1
+emission_sphere_radius = 48.0
+gravity = Vector2(0, 200)
+color = Color(1, 0.87058824, 0, 1)
+anim_speed_min = 2.0
+anim_speed_max = 2.0
+anim_offset_min = 1.0
+anim_offset_max = 1.0
+
+[node name="Sprite" type="Sprite2D" parent="."]
+material = ExtResource("2_46cne")
+texture = ExtResource("2_mohf7")
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_46cne")
+amount = 2
+texture = ExtResource("1_os7x8")
+lifetime = 0.5
+explosiveness = 0.5
+emission_shape = 1
+emission_sphere_radius = 48.0
+gravity = Vector2(0, 200)
+scale_amount_curve = SubResource("Curve_46cne")
+anim_speed_min = 2.0
+anim_speed_max = 2.0

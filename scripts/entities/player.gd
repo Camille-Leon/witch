@@ -3,7 +3,7 @@ class_name Player
 
 var state_machine: StateMachine = StateMachine.new()
 
-var move_speed = 300
+var move_speed = 350
 var jump_velocity = -400
 
 var can_move := true
@@ -18,18 +18,23 @@ enum PlayerState {
 }
 
 func _ready() -> void:
-	state_machine.add(PlayerState.IDLE, State.new().set_update(func(_delta: float):
-		print("Are you on the ground? " + str(is_on_floor()))
-	))
+	#state_machine.add(PlayerState.IDLE, State.new().set_update(func(_delta: float):
+		#print("Are you on the ground? " + str(is_on_floor()))
+	#))
 	
 	primary_action = Actions.get_action("jump").new(self)
 
 func _physics_process(delta: float) -> void:
 	var input_horizontal = Input.get_axis("left", "right")
+	
 	var input_primary = Input.is_action_pressed("primary")
+	var input_secondary = Input.is_action_pressed("secondary")
 	
 	if primary_action:
 		primary_action.update(delta, input_primary)
+	
+	if secondary_action:
+		secondary_action.update(delta, input_secondary)
 	
 	if !is_on_floor():
 		if apply_gravity:
@@ -38,6 +43,6 @@ func _physics_process(delta: float) -> void:
 	if can_move:
 		velocity.x = input_horizontal * move_speed
 	
-	state_machine.update(delta)
+	#state_machine.update(delta)
 	
 	move_and_slide()
