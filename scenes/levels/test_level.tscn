@@ -11,4 +11,4 @@ tile_set = ExtResource("1_jbqir")
 navigation_enabled = false
 
 [node name="Player" parent="." instance=ExtResource("2_yautc")]
-position = Vector2(244, 406)
+position = Vector2(608, 410)
