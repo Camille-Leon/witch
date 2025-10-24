@@ -51,7 +51,7 @@ func _physics_process(delta: float) -> void:
 				sprite.flip_h = false
 			else:
 				sprite.flip_h = true
-			sprite.animation = "move"
+			sprite.play("move")
 			velocity.x = move_toward(velocity.x, input_horizontal * move_speed, 3000 * delta)
 			facing = int(input_horizontal)
 		else:

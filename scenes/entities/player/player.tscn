@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://6x1l4wlx4gib" path="res://assets/textures/entities/player_spriteframes.tres" id="2_635qg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1hmtu"]
-size = Vector2(32, 48)
+size = Vector2(24, 32)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -16,5 +16,5 @@ sprite_frames = ExtResource("2_635qg")
 animation = &"idle"
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(0, -24)
+position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_1hmtu")
