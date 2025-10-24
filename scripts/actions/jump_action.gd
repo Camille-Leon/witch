@@ -1,6 +1,6 @@
 extends Action
 
-var jump_velocity: int = -400
+var jump_velocity: int = -600
 
 var coyote_time_max: float = 0.1 # in seconds
 var coyote_time: float = 0

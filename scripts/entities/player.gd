@@ -3,8 +3,12 @@ class_name Player
 
 var state_machine: StateMachine = StateMachine.new()
 
-var move_speed = 350
-var jump_velocity = -400
+var move_speed: int = 350
+var jump_velocity: int = -700
+
+var facing: int = 1
+
+@onready var sprite := $Sprite
 
 var can_move := true
 var can_jump := true
@@ -23,6 +27,7 @@ func _ready() -> void:
 	#))
 	
 	primary_action = Actions.get_action("jump").new(self)
+	secondary_action = Actions.get_action("star").new(self)
 
 func _physics_process(delta: float) -> void:
 	var input_horizontal = Input.get_axis("left", "right")
@@ -41,7 +46,17 @@ func _physics_process(delta: float) -> void:
 			velocity += get_gravity() * delta
 	
 	if can_move:
-		velocity.x = input_horizontal * move_speed
+		if abs(input_horizontal) == 1:
+			if input_horizontal == 1:
+				sprite.flip_h = false
+			else:
+				sprite.flip_h = true
+			sprite.animation = "move"
+			velocity.x = move_toward(velocity.x, input_horizontal * move_speed, 3000 * delta)
+			facing = int(input_horizontal)
+		else:
+			sprite.animation = "idle"
+			velocity.x = move_toward(velocity.x, 0, 4000 * delta)
 	
 	#state_machine.update(delta)
 	

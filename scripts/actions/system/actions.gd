@@ -1,7 +1,8 @@
 class_name Actions
 
 const ACTIONS = {
-	"jump": preload("res://scripts/actions/jump_action.gd")
+	"jump": preload("res://scripts/actions/jump_action.gd"),
+	"star": preload("res://scripts/actions/star_action.gd")
 }
 
 static func get_action(name: String) -> Script:
